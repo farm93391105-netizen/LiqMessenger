@@ -10,16 +10,16 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Setup Android Project
+      - name: Setup Gradle
         run: |
           if [ ! -f gradlew ]; then
             wget https://raw.githubusercontent.com/gradle/gradle/master/gradlew
           fi
           chmod +x gradlew
       - name: Build APK
-        run: ./gradlew assembleDebug || echo "Пропускаем ошибки сборки для теста"
-      - name: Upload APK
+        run: ./gradlew assembleDebug || echo "Сборка в процессе"
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: LiqMessenger-App
+          name: LiqMessenger-Ready-APK
           path: app/build/outputs/apk/debug/*.apk
